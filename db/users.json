@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "email": "s4410206@gmail.com",
+        "username": "Samandar",
+        "createdAt": "1/5/2026"
+    },
+    {
+        "id": 2,
+        "email": "s4410206@gmail.com",
+        "username": "Samandar",
+        "createdAt": "1/5/2026"
+    },
+    {
+        "id": 3,
+        "email": "s4410246@gmail.com",
+        "username": "Samandar",
+        "createdAt": "1/5/2026"
+    },
+    {
+        "id": 4,
+        "email": "s4410446@gmail.com",
+        "username": "Samandar",
+        "password": "123",
+        "createdAt": "1/5/2026"
+    },
+    {
+        "id": 1,
+        "email": "s4ew32410206@gmail",
+        "createdAt": "1/6/2026"
+    },
+    {
+        "id": 1,
+        "email": "s4ew32410206@gmail.com",
+        "createdAt": "1/6/2026"
+    },
+    {
+        "id": 1,
+        "email": "samandar@gmail.com",
+        "password": "Samandar08",
+        "createdAt": "1/6/2026"
+    }
+]
