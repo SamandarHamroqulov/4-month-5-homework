@@ -2,12 +2,11 @@ require("dotenv").config();
 const http = require("http");
 const readDb = require("./utils/readFile");
 const writeDb = require("./utils/writeFile");
+const { regexEmail, regexPassword } = require("./utils/validator");
 
 const server = http.createServer((req, res) => {
   let url = req.url.toLowerCase();
   let method = req.method.toUpperCase();
-  let regEmail = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
-  let regPassword = /^(?=.*[A-Z])(?=.*\d).{4,}$/;
 
   if (url.startsWith("/api")) {
     if (url == "/api/auth/register" && method == "POST") {
@@ -20,21 +19,7 @@ const server = http.createServer((req, res) => {
       req.on("end", async () => {
         newUser = JSON.parse(newUser);
         //
-        if (!newUser.email || !newUser.password) {
-          res.writeHead(400, { "content-type": "application/json" });
-          return res.end(
-            JSON.stringify({
-              message:
-                "Check email or write password like this 'With on uppercase letter and the password must be a number or at least 4 character '!!",
-              status: 400,
-            })
-          );
-        }
-        //
-        if (
-          !regEmail.test(newUser.email) ||
-          !regPassword.test(newUser.password)
-        ) {
+        if (!regexEmail(newUser.email) || !regexPassword(newUser.password)) {
           res.writeHead(400, { "content-type": "application/json" });
           return res.end(
             JSON.stringify({
@@ -44,6 +29,7 @@ const server = http.createServer((req, res) => {
             })
           );
         }
+
         //
 
         let users = await readDb("users.json");
@@ -89,7 +75,7 @@ const server = http.createServer((req, res) => {
 
       req.on("end", async () => {
         user = JSON.parse(user);
-        if (!regEmail.test(user.email) || !regPassword.test(user.password)) {
+        if (!regexEmail(user.email) || !regexPassword(user.password)) {
           res.writeHead(400, { "content-type": "application/json" });
           return res.end(
             JSON.stringify({
